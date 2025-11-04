@@ -19,10 +19,10 @@ my_ui <- fluidPage(
     h2("This is a basic shiny application"),
     
     # this creates an input, assigned to the label username in the input object
-    textInput(inputId = "username", label = "What is your name?"),
+    textInput(inputId = "Tamyaq", label = "Tamana Yaqoubi"),
     
     # this creates an output
-    textOutput(outputId = "message")
+    textOutput(outputId = "This is so much fun!")
 )
 
 # The server is a function that takes input and output as arguments 
