@@ -18,6 +18,7 @@ library(palmerpenguins)
 color_options <- c("species", "gender", "homeworld")
 axis_options <- c("height", "mass", "birth_year")
 
+
 # Define UI for application that draws a histogram
 ui <- fluidPage(
 
