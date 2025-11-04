@@ -15,34 +15,34 @@ library(plotly)
 library(palmerpenguins)
 
 
-color_options <- c("species", "island", "year", "sex")
-axis_options <- c("bill_length_mm", "bill_depth_mm", "flipper_length_mm", "body_mass_g")
+color_options <- c("species", "gender", "homeworld")
+axis_options <- c("height", "mass", "birth_year")
 
 # Define UI for application that draws a histogram
 ui <- fluidPage(
 
     # Application title
-    titlePanel("Penguins!"),
+    titlePanel("StarWars!"),
 
     # Sidebar with a slider input for number of bins 
     sidebarLayout(
         sidebarPanel(
             selectInput(inputId = "color",
                         label = "Color your points by:",
-                        choices = color_options  ),
+                        choices = "species", "gender", "eye_color", "height"  ),
             selectInput(inputId = "x",
                         label = "Variable on the X axis:",
-                        choices = axis_options, 
-                        selected = "bill_length_mm"),
+                        choices = "height", "mass", "birth_year", 
+                        selected = "height"),
             selectInput(inputId = "y",
                         label = "Variable on the Y axis:",
-                        choices = axis_options, 
-                        selected = "bill_depth_mm"  )
+                        choices = "height", "mass", "birth_year", 
+                        selected = "mass"  )
         ),
 
         # Show a plot of the generated distribution
         mainPanel(
-           plotOutput("PenguinPlot"), 
+           plotOutput("starwarsPlot"), 
            plotOutput("ColorPlot")
         )
     )
@@ -52,14 +52,14 @@ ui <- fluidPage(
 server <- function(input, output) {
   
     # color_choice <- reactive({get(input$color)})
-    my_penguins <- penguins %>% mutate(year = factor(year))
+    starwars <- starwars %>% mutate(gender = factor(gender))
     
-    output$PenguinPlot <- renderPlot({
-       p <- ggplot(my_penguins, aes(x = .data[[input$x]], y = .data[[input$y]], col = .data[[input$color]])) + geom_point()
+    output$starwarsPlot <- renderPlot({
+       p <- ggplot(starwars, aes(x = .data[[input$x]], y = .data[[input$y]], col = .data[[input$color]])) + geom_point()
        p
     })
     output$ColorPlot <- renderPlot(({
-        p2 <- ggplot(my_penguins, aes(x = .data[[input$color]], fill =.data[[input$color]] )) + geom_bar()
+        p2 <- ggplot(starwars, aes(x = .data[[input$color]], fill =.data[[input$color]] )) + geom_bar()
         p2
     }))
 }
