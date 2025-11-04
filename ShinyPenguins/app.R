@@ -12,7 +12,7 @@
 library(shiny)
 library(tidyverse)
 library(plotly)
-library(palmerpenguins)
+library(starwars)
 
 
 color_options <- c("species", "gender", "homeworld")
